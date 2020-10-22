@@ -13,5 +13,57 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Headerdateien\game">
+      <UniqueIdentifier>{d882feff-6215-4ce6-95c9-4b0e2c0575fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\game">
+      <UniqueIdentifier>{105c6dcb-61a2-4bc7-8771-194f82d8c0ff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="game\C_Game.cpp">
+      <Filter>Quelldateien\game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\C_Window.cpp">
+      <Filter>Quelldateien\game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\C_Config.cpp">
+      <Filter>Quelldateien\game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\C_States.cpp">
+      <Filter>Quelldateien\game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\C_Paddle.cpp">
+      <Filter>Quelldateien\game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\C_Ball.cpp">
+      <Filter>Quelldateien\game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="game\C_Game.h">
+      <Filter>Headerdateien\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\C_Window.h">
+      <Filter>Headerdateien\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\C_Config.h">
+      <Filter>Headerdateien\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\C_Paddle.h">
+      <Filter>Headerdateien\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\C_States.h">
+      <Filter>Headerdateien\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\C_Ball.h">
+      <Filter>Headerdateien\game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
