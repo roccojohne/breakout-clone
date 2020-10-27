@@ -13,12 +13,12 @@ void C_Ball::update(C_Game& game, double frametime)
 {
    // if (ball_is_on_paddle)
     {
-        float x = ball->getGlobalBounds().left;
-        float y = ball->getGlobalBounds().top;
+       // float x = ball->getPosition().x;
+       // float y = ball->getPosition().y;
 
         if (!ball_is_on_paddle)
         {
-            ball->setPosition(x + (speedx * frametime), y + (speedy * frametime));
+            ball->setPosition(ball->getPosition().x + (speedx * frametime), ball->getPosition().y - (speedy * frametime));
         }
     }
 }
