@@ -6,7 +6,7 @@
 class C_Paddle
 {
     private:
-    double speed = 200;// movement speed paddle
+    double speed = 300;// movement speed paddle
     double width = 70;
     double height = 10;
 

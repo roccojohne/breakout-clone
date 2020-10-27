@@ -42,6 +42,10 @@ class C_Game
     {
         return window;
     };
+    C_State* getCurrentState()
+    {
+        return currenstate;
+    }
 
     void run();// gameloop
 };

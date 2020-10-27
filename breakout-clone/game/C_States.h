@@ -15,6 +15,7 @@ class C_State
         virtual void update(C_Game& game, double frametime) = 0;
         virtual void handleevents(C_Game& game, sf::Event& event) = 0;
         virtual void render(C_Game& game) = 0;
+        virtual C_Paddle* getPaddle() = 0;
 };
 
 
@@ -29,4 +30,8 @@ class C_PlayState : public C_State
         void update(C_Game& game, double frametime);
         void handleevents(C_Game& game, sf::Event& event);
         void render(C_Game& game);
+        C_Paddle* getPaddle()
+        {
+            return player;
+        };
 };
