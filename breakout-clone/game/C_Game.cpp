@@ -29,7 +29,9 @@ void C_Game::run()
                         std::cout << "ASCII character typed: " << static_cast<char>(event->text.unicode) << std::endl;
                 }
                 break;*/
+               
             }
+
         }
 
         window->getRenderWindow()->clear(sf::Color(30, 30, 30, 255));

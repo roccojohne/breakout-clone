@@ -10,6 +10,9 @@ C_Paddle::C_Paddle(C_Game &game)
 
 void C_Paddle::update(C_Game& game, double frametime)
 {
+    //std::cout << "PaddlePos : " << paddle->getPosition().x << std::endl;
+
+
     if (move_left)
     {
         if (paddle->getGlobalBounds().left > 0)
