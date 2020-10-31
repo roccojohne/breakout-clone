@@ -148,6 +148,7 @@
     <ClCompile Include="game\C_Ball.cpp" />
     <ClCompile Include="game\C_Config.cpp" />
     <ClCompile Include="game\C_Game.cpp" />
+    <ClCompile Include="game\C_Level.cpp" />
     <ClCompile Include="game\C_Paddle.cpp" />
     <ClCompile Include="game\C_States.cpp" />
     <ClCompile Include="game\C_Window.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="game\C_Ball.h" />
     <ClInclude Include="game\C_Config.h" />
     <ClInclude Include="game\C_Game.h" />
+    <ClInclude Include="game\C_Level.h" />
     <ClInclude Include="game\C_Paddle.h" />
     <ClInclude Include="game\C_States.h" />
     <ClInclude Include="game\C_Window.h" />

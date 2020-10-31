@@ -7,6 +7,7 @@
 
 class C_Ball;
 class C_Paddle;
+class C_Level;
 
 class C_State
 {
@@ -16,6 +17,7 @@ class C_State
         virtual void handleevents(C_Game& game, sf::Event& event) = 0;
         virtual void render(C_Game& game) = 0;
         virtual C_Paddle* getPaddle() = 0;
+        virtual C_Level* getLevel() = 0;
 };
 
 
@@ -24,6 +26,7 @@ class C_PlayState : public C_State
     private:
     C_Paddle* player = nullptr;
     C_Ball *ball = nullptr;
+    C_Level* level = nullptr;
     
     public:
         C_PlayState(C_Game& game);
@@ -33,5 +36,9 @@ class C_PlayState : public C_State
         C_Paddle* getPaddle()
         {
             return player;
+        };
+        C_Level* getLevel()
+        {
+            return level;
         };
 };

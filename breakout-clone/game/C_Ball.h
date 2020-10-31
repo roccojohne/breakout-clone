@@ -18,7 +18,7 @@ class C_Ball
     enum ID_BALL_MODE
     {
         ID_BALL_REFLECT = 10100,
-        ID_BALL_FLY_TROU,
+        ID_BALL_FLY_TROUH,
         ID_BALL_FLY_BACK,
     };
     

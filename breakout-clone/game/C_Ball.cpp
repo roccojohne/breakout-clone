@@ -38,6 +38,51 @@ void C_Ball::update(C_Game& game, double frametime)
                         speedy = -speedy;
                     }
 
+                    // check colision ball with levelitem
+                    for (auto data : game.getCurrentState()->getLevel()->leveldata)
+                    {
+                        if (ball->getGlobalBounds().intersects(data->rs->getGlobalBounds()) && data->is_visible)
+                        {
+                            // check collison direction
+
+                            data->is_visible = false;
+                        }
+                    }
+
+
+                    ball->setPosition(ball->getPosition().x + (speedx * frametime), ball->getPosition().y - (speedy * frametime));
+                }
+                break;
+                case ID_BALL_FLY_TROUH: // defalut ball reflect on collision
+                {
+                    // check collision right windowborder
+                    if (ball->getGlobalBounds().left + ball->getGlobalBounds().width >= game.getWindow()->getRenderWindow()->getSize().x)
+                        speedx = -speedx;
+                    // check collision with top windowborder
+                    if (ball->getGlobalBounds().top <= 0)
+                        speedy = -speedy;
+                    // check collision with leftborder
+                    if (ball->getGlobalBounds().left <= 0)
+                        speedx = -speedx;
+
+                    // check collioson with paddle
+                    if (ball->getGlobalBounds().intersects(game.getCurrentState()->getPaddle()->getPos()))
+                    {
+                        speedy = -speedy;
+                    }
+
+                    // check colision ball with levelitem
+                    for (auto data : game.getCurrentState()->getLevel()->leveldata)
+                    {
+                        if (ball->getGlobalBounds().intersects(data->rs->getGlobalBounds()) && data->is_visible)
+                        {
+                            //speedy = -speedy;
+                            //speedx = -speedx;
+                            data->is_visible = false;
+                        }
+                    }
+
+
                     ball->setPosition(ball->getPosition().x + (speedx * frametime), ball->getPosition().y - (speedy * frametime));
                 }
                 break;

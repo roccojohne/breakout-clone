@@ -42,6 +42,9 @@
     <ClCompile Include="game\C_Ball.cpp">
       <Filter>Quelldateien\game</Filter>
     </ClCompile>
+    <ClCompile Include="game\C_Level.cpp">
+      <Filter>Quelldateien\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -63,6 +66,9 @@
       <Filter>Headerdateien\game</Filter>
     </ClInclude>
     <ClInclude Include="game\C_Ball.h">
+      <Filter>Headerdateien\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\C_Level.h">
       <Filter>Headerdateien\game</Filter>
     </ClInclude>
   </ItemGroup>
