@@ -10,9 +10,10 @@ class C_Ball
     sf::CircleShape* ball = nullptr;
 
     bool ball_is_on_paddle = false;
-    float speedx = 250;
-    float speedy = 250;
+    float speedx = 80;
+    float speedy = 80;
     int flymode = ID_BALL_REFLECT;
+    bool ball_is_shown = true;
 
     public:
     enum ID_BALL_MODE
@@ -30,4 +31,8 @@ class C_Ball
     void setToPaddle(const float &x, const float &y);
     void setMode(const int &mode);
     void setSpeed(const float &sx, const float &sy);
+    bool getBallState()
+    {
+        return ball_is_shown;
+    };
 };

@@ -15,6 +15,10 @@ void C_PlayState::update(C_Game& game, double frametime)
     //ball->setToPaddle(player->getPos().left + (player->getPos().width * .5f), player->getPos().top);
     ball->update(game, frametime);
     player->update(game, frametime);
+    if (!ball->getBallState())
+        std::cout << "GAMEOVER";
+    if (level->state() == false)
+        game.setCurrentState(game.ID_MENU);
 }
 
 void C_PlayState::handleevents(C_Game& game, sf::Event& event)

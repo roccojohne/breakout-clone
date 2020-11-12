@@ -24,6 +24,8 @@ class C_Game
 
     float frametime = 0.0f;    
 
+    std::string font_path = "assets\\fonts\\Allura-Regular.ttf";
+
     public:
 
     enum ID_STATE

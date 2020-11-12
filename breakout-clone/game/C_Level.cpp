@@ -16,6 +16,8 @@ C_Level::~C_Level()
 
 void C_Level::update(C_Game& game, double frametime)
 {
+    if (num_items <= 0)
+        is_done = true;
 }
 
 void C_Level::handleevents(C_Game& game, sf::Event& event)
@@ -77,6 +79,7 @@ void C_Level::load(C_Game &game, const char* filename)
                 lv->rs->setSize(sf::Vector2f(32, 32));
                 leveldata.push_back(lv);
             }
+            num_items++;
         }
     }
 }

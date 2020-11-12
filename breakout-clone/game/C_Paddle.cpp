@@ -16,12 +16,12 @@ void C_Paddle::update(C_Game& game, double frametime)
     if (move_left)
     {
         if (paddle->getGlobalBounds().left > 0)
-            paddle->setPosition(paddle->getPosition().x - (speed * frametime), paddle->getPosition().y);
+            paddle->setPosition(paddle->getPosition().x - (speed * (float)frametime), paddle->getPosition().y);
     }
     else if (move_right)
     {
         if (paddle->getGlobalBounds().left + paddle->getGlobalBounds().width < game.getWindow()->getRenderWindow()->getSize().x)
-            paddle->setPosition(paddle->getPosition().x + (speed * frametime), paddle->getPosition().y);
+            paddle->setPosition(paddle->getPosition().x + (speed * (float)frametime), paddle->getPosition().y);
     }
 }
 

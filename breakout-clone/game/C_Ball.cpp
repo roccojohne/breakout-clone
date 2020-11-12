@@ -11,8 +11,11 @@ C_Ball::C_Ball(C_Game& game)
 
 void C_Ball::update(C_Game& game, double frametime)
 {
+    if (game.getCurrentState()->getLevel()->state() == true)
+        game.setCurrentState(game.ID_MENU);
 
-    if (!ball_is_on_paddle)
+
+    if (!ball_is_on_paddle && ball_is_shown)
     {
         switch (flymode)
         {
@@ -34,39 +37,74 @@ void C_Ball::update(C_Game& game, double frametime)
                     speedy = -speedy;
                 }
 
-                // check colision ball with levelitem
-                for (auto data : game.getCurrentState()->getLevel()->leveldata)
-                {
-                    if (ball->getGlobalBounds().intersects(data->rs->getGlobalBounds()) && data->is_visible)
-                    {
-                        // check collison direction
-                        // collision ball vs traget left side
-                        if (ball->getGlobalBounds().left <= data->rs->getGlobalBounds().left + data->rs->getGlobalBounds().width
-                            && ball->getGlobalBounds().top >= data->rs->getGlobalBounds().top
-                            && ball->getGlobalBounds().top <= data->rs->getGlobalBounds().top + data->rs->getGlobalBounds().height)
-                               speedx = -speedx;
-                        // collision ball vs traget right side
-                        else if (ball->getGlobalBounds().left >= data->rs->getGlobalBounds().left + data->rs->getGlobalBounds().width
-                                && ball->getGlobalBounds().top >= data->rs->getGlobalBounds().top
-                                && ball->getGlobalBounds().top <= data->rs->getGlobalBounds().top + data->rs->getGlobalBounds().height)
-                                   speedx = -speedx;
-                        // collision ball vs traget top side
-                        else if (ball->getGlobalBounds().top <= data->rs->getGlobalBounds().top + data->rs->getGlobalBounds().height
-                                 && ball->getGlobalBounds().left >= data->rs->getGlobalBounds().left
-                                 && ball->getGlobalBounds().left <= data->rs->getGlobalBounds().left + data->rs->getGlobalBounds().width)
-                                   speedy = -speedy;
-                        // collision ball vs traget bottom side
-                        else if (ball->getGlobalBounds().top >= data->rs->getGlobalBounds().top + data->rs->getGlobalBounds().height
-                                 && ball->getGlobalBounds().left >= data->rs->getGlobalBounds().left
-                                 && ball->getGlobalBounds().left <= data->rs->getGlobalBounds().left + data->rs->getGlobalBounds().width)
-                                   speedy = -speedy;
+                if (ball->getGlobalBounds().top > game.getWindow()->getRenderWindow()->getSize().y)
+                    ball_is_shown = false;
 
-                        data->is_visible = false;
+                // check colision ball with levelitem
+                for (auto traget : game.getCurrentState()->getLevel()->leveldata)
+                {
+                    if (ball->getGlobalBounds().intersects(traget->rs->getGlobalBounds()) && traget->is_visible)
+                    {
+                        // collision leftside
+                        if (
+                            ball->getGlobalBounds().top + ball->getRadius() > traget->rs->getGlobalBounds().top && // ball center > item top
+                            (ball->getGlobalBounds().top + ball->getGlobalBounds().height) - ball->getRadius() < traget->rs->getGlobalBounds().top + traget->rs->getGlobalBounds().height &&
+                            ball->getGlobalBounds().left < traget->rs->getGlobalBounds().left &&
+                            (ball->getGlobalBounds().left + ball->getGlobalBounds().width) 
+                            )
+                        {
+                            traget->is_visible = false;
+                            game.getCurrentState()->getLevel()->one_killed();
+                            speedx = -speedx;
+                            std::cout << "col links\n";
+                        }
+
+                        // collision rightside
+                        else if (
+                            ball->getGlobalBounds().top + ball->getRadius() > traget->rs->getGlobalBounds().top && // ball center > item top
+                            (ball->getGlobalBounds().top + ball->getGlobalBounds().height) - ball->getRadius() < (traget->rs->getGlobalBounds().top + traget->rs->getGlobalBounds().height) &&
+                            ball->getGlobalBounds().left > traget->rs->getGlobalBounds().left &&
+                            (ball->getGlobalBounds().left + ball->getGlobalBounds().width) > (traget->rs->getGlobalBounds().left + traget->rs->getGlobalBounds().width)
+                            )
+                        {
+                            traget->is_visible = false;
+                            game.getCurrentState()->getLevel()->one_killed();
+                            speedx = -speedx;
+                            std::cout << "col rechts\n";
+                        }
+                        
+                        // collision bottom
+                        else if (
+                                 ball->getGlobalBounds().left + ball->getRadius() > traget->rs->getGlobalBounds().left &&
+                                 (ball->getGlobalBounds().left + ball->getGlobalBounds().width) - ball->getRadius() < (traget->rs->getGlobalBounds().left + traget->rs->getGlobalBounds().width) &&
+                                 ball->getGlobalBounds().top < (traget->rs->getGlobalBounds().top + traget->rs->getGlobalBounds().height) &&
+                                 (ball->getGlobalBounds().top + ball->getGlobalBounds().height) > (traget->rs->getGlobalBounds().top + traget->rs->getGlobalBounds().height) 
+                                 )
+                        {
+                            traget->is_visible = false;
+                            game.getCurrentState()->getLevel()->one_killed();
+                            speedy = -speedy;
+                            std::cout << "col unten\n";
+                        }
+
+                        // collision top
+                        else if (
+                            ball->getGlobalBounds().left + ball->getRadius() > traget->rs->getGlobalBounds().left &&
+                            (ball->getGlobalBounds().left + ball->getGlobalBounds().width) - ball->getRadius() < (traget->rs->getGlobalBounds().left + traget->rs->getGlobalBounds().width) &&
+                            ball->getGlobalBounds().top < traget->rs->getGlobalBounds().top &&
+                            (ball->getGlobalBounds().top + ball->getGlobalBounds().height) > (traget->rs->getGlobalBounds().top) 
+                            )
+                        {
+                            traget->is_visible = false;
+                            game.getCurrentState()->getLevel()->one_killed();
+                            speedy = -speedy;
+                            std::cout << "col oben\n";
+                        }
                     }
                 }
 
 
-                ball->setPosition(ball->getPosition().x + (speedx * frametime), ball->getPosition().y - (speedy * frametime));
+                ball->setPosition(ball->getPosition().x + (speedx * (float)frametime), ball->getPosition().y - (speedy * (float)frametime));
             }
             break;
             case ID_BALL_FLY_TROUH: // defalut ball reflect on collision
@@ -99,7 +137,7 @@ void C_Ball::update(C_Game& game, double frametime)
                 }
 
 
-                ball->setPosition(ball->getPosition().x + (speedx * frametime), ball->getPosition().y - (speedy * frametime));
+                ball->setPosition(ball->getPosition().x + (speedx * (float)frametime), ball->getPosition().y - (speedy * (float)frametime));
             }
             break;
         }
