@@ -78,8 +78,8 @@ void C_Level::load(C_Game &game, const char* filename)
                 lv->rs->setPosition(posx * 32, posy * 32);
                 lv->rs->setSize(sf::Vector2f(32, 32));
                 leveldata.push_back(lv);
+                num_items++;
             }
-            num_items++;
         }
     }
 }

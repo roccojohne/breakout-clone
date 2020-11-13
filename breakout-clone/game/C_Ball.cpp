@@ -10,9 +10,9 @@ C_Ball::C_Ball(C_Game& game)
 }
 
 void C_Ball::update(C_Game& game, double frametime)
-{
+{/*
     if (game.getCurrentState()->getLevel()->state() == true)
-        game.setCurrentState(game.ID_MENU);
+        game.setCurrentState(game.ID_MENU);*/
 
 
     if (!ball_is_on_paddle && ball_is_shown)
