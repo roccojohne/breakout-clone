@@ -11,6 +11,7 @@ class C_Window;
 class C_Paddle;
 class C_State;
 class C_PlayState;
+class C_GameOverState;
 
 class C_Game
 {
@@ -25,6 +26,7 @@ class C_Game
     float frametime = 0.0f;    
 
     std::string font_path = "assets\\fonts\\Allura-Regular.ttf";
+    sf::Font* font = nullptr;
 
     public:
 
@@ -32,6 +34,9 @@ class C_Game
     {
         ID_MENU = 10000,
         ID_PLAY,
+        ID_GAMEOVER,
+        ID_SETTING,
+        ID_CREDITS,
     };
 
     C_Game();
@@ -48,6 +53,9 @@ class C_Game
     {
         return currenstate;
     }
-
+    sf::Font *getFont()
+    {
+        return font;
+    }
     void run();// gameloop
 };

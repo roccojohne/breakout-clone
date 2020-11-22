@@ -5,6 +5,12 @@ C_Game::C_Game()
     config = new C_Config(*this);
     window = new C_Window(*this);
 
+    font = new sf::Font;
+    if (!font->loadFromFile(font_path))
+    {
+        std::cout << "ERROR: open font \n";
+        exit(-1);
+    }
     frametimer = new sf::Clock;
 
     setCurrentState(ID_PLAY);
@@ -49,9 +55,13 @@ void C_Game::setCurrentState(int id)
     switch (id)
     {
         case ID_MENU:
+            currenstate = new C_MenuState(*this);
             break;
         case ID_PLAY:
             currenstate = new C_PlayState(*this);
+            break;
+        case ID_GAMEOVER:
+            currenstate = new C_GameOverState(*this);
             break;
         default:
             break;
